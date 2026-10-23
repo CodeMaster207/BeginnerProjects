@@ -1,0 +1,58 @@
+<!--
+Purpose:
+    Creates the calculator's display and 20 buttons. Each button has an attribute that JavaScript will use to recognise
+    its purpose. 
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="calculator">
+            <div class="heading">CALCULATOR</div>
+
+            <div class="display">
+                <div id="expression">Ready to calculate</div>
+                <div id="result">0</div>
+            </div> 
+
+            <div class="buttons">
+                <button data-action="clear"     class="utility">AC</button>
+                <button data-action="sign"      class="utility">+/-</button>
+                <button data-action="percent"   class="utility">%</button>
+                <button data-op="/"             class="operator">÷</button>
+
+                <button data-num="7">7</button>
+                <button data-num="8">8</button>
+                <button data-num="9">9</button>
+                <button data-op="*"             class="operator">x</button>
+
+                <button data-num="4">4</button>
+                <button data-num="5">5</button>
+                <button data-num="6">6</button>
+                <button data-op="+"             class="operator">+</button>
+
+                <button data-action="backspace">⌫</button>
+                <button data-num="0">0</button>
+                <button data-action="decimal">.</button>
+                <button data-action="equals" class="equals">=</button>
+            </div>
+
+            <div class = "footer">
+                <p>Senthrone</p>
+                <p>Date created: 23th Oct 2026</p>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!--
+Notes:
+1. The Custom data-action Attribute (JavaScript & CSS)
+    The data-* specification allows developers to store custom, private data directly on standard HTML elements. A common 
+    pattern is to use data-action to assign a specific JavaScript event or state transition to an element without relying on 
+    CSS class names.
+    (from Google Web AI Overview)
+
+-->
