@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#f7f5f0">
+        <title>Pomodoro Timer</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <main class="app">
+            <header>
+                <div class="brand"><span>●</span>focusflow</div>
+                <div class="tag">STAY FOCUSED</div>
+            </header>
+
+            <section class="intro">
+                <h1>Make time count</h1>
+                <p class="subtitle">One task at a time.</p>
+            </section>
+
+            <section class="timer-card">
+                <div class="modes">
+                    <button class="mode active" data-mode="focus">Focus</button>
+                    <button class="mode"        data-mode="short">Short break</button>
+                    <button class="mode"        data-mode="long">Long break</button>
+                </div>
+
+                <div class="timer-ring" id="ring">
+                    <div class="timer-content">
+                        <div id="time" role="timer" aria-live="off">25:00</div>
+                        <div id="status">Ready to begin</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="secondary" id="reset" aria-label="Reset timer">↺</button>
+                    <button class="primary" id="start">Start focus</button>
+                    <button class="secondary" id="skip" aria-label="Skip session">⏭</button>
+                </div>
+
+                <div class="session-info">
+                    <div>COMPLETED <strong id="completed">0 sessions</strong></div>
+                    <div>CURRENT MODE <strong id="current-mode">Focus</strong></div>
+                </div>
+            </section>
+
+            <h2 class="section-title">Customise your sessions</h2>
+
+            <section class="settings">
+                <div class="setting-row">
+                    <label for="focus-min">Focus(minutes)</label>
+                    <input id="focus-min" type="number" min="1" max="180" value="25">
+                </div>
+
+                <div class="setting-row">
+                    <label for="short-min">Short break(minutes)</label>
+                    <input id="short-min" type="number" min="1" max="60" value="5">
+                </div>
+
+                <div class="setting-row">
+                    <label for="long-min">Long break(minutes)</label>
+                    <input id="long-min" type="number" min="1" max="60" value="15">
+                </div>
+
+                <button class="save" id="save">Save durations</button>
+            </section>
+
+            <footer>Never give up!</footer>
+        </main>
+    </body>
+</html>
