@@ -72,3 +72,11 @@ h1 {
     text-align: center;
     box-shadow: 0 12px 35px #30291b08;
 }
+
+.modes {
+    display: flex;
+    gap: 6px;
+    padding: 5px;
+    border-radius: 14px;
+    background: #f5f3ef;
+}
