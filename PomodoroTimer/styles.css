@@ -80,3 +80,114 @@ h1 {
     border-radius: 14px;
     background: #f5f3ef;
 }
+
+.mode {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #777b80;
+    padding: 11px 4px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.mode.active {
+    color: var(--accent);
+    background: white;
+    box-shadow: 0 2px 7px #0000000b;
+}
+
+.timer-ring {
+    width: min(68vw, 260px);
+    aspect-ratio: 1;
+    margin: 30px auto 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(
+        var(--accent) var(--progress, 100%), #f0ede7 0
+    );
+    position: relative;
+}
+
+.timer-ring::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    background: white;
+    border-radius: 50%;
+}
+
+.timer-content {
+    z-index: 1;
+}
+
+#time {
+    font-size: clamp(48px, 14vw, 68px);
+    font-weight: 750;
+    letter-spacing: -3px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.primary {
+    border: none;
+    border-radius: 14px;
+    background: var(--accent);
+    color: white;
+    font-size: 15px;
+    font-weight: 750;
+    padding: 16px 20px;
+    min-width: 165px;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+.primary:active,.secondary:active {
+    transform: scale(0.97);
+}
+
+.secondary {
+    width: 49px;
+    height: 49px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    font-size: 21px;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.session-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 19px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+}
