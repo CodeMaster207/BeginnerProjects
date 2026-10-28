@@ -64,3 +64,45 @@ function selectMode() {
     total = remaining;
     render();
 }
+
+function tick() {
+    remaining = Math.max(0, Math.ceil(endTime - Math.now() / 1000));
+
+    if (remaining <= 0) {
+        stopTimer();
+
+        if (mode === "focus") {
+            completed++
+            selectMode(completed % 4 === 0? "long" : "short");
+        }
+        else {
+            selectMode("focus")
+        }
+
+        statusE1.textContent = "Session complete";
+        render();
+
+        if ("vibrate" in navigator) {
+            navigator.vibrate([200, 100, 200]);
+        }
+
+        alert("Session completed! Next: " + names[mode]);
+        return;
+    }
+    render();
+}
+
+function startTimer() {
+    if (running) {
+        stopTimer();
+        render();
+        return;
+    }
+
+    running = true;
+    endTime = Date.now() + remaining * 1000;
+    interval = setInterval(tick, 250);
+    render();
+}
+
+startBtn.addEventListener("click", startTimer);
