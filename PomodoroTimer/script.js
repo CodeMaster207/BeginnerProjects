@@ -50,3 +50,17 @@ function render() {
     document.title = timeE1.textContent + ". " + names[mode];
 }
 
+function stopTimer() {
+    running = false;
+    clearInterval(interval);
+    interval = null;
+    endTime = null;
+}
+
+function selectMode() {
+    stopTimer();
+    mode = newMode;
+    remaining = durations[mode] * 60;
+    total = remaining;
+    render();
+}
