@@ -106,3 +106,51 @@ function startTimer() {
 }
 
 startBtn.addEventListener("click", startTimer);
+
+document.getElementById("reset").addEventListener("click", () => {
+    stopTimer();
+    remaining = durations[mode] * 60;
+    total = remaining;
+    render();
+})
+
+document.getElementById("skip").addEventListener("click", () => {
+    if (mode === "focus") {
+        completed++;
+        selectMode(completed % 4 === 0? "long" : "short");
+    }
+    else {
+        selectMode("focus");
+    }
+})
+
+document.querySelectorAll(".mode").forEach(button => {
+    button.addEventListener("click", () => {
+        selectMode(button.dataset.mode);
+    })
+})
+
+document.getElementById("save").addEventListerner("click", () => {
+    const values = {
+        focus: Number(document.getElementById("focus-min").value),
+        short: Number(document.getElementById("short-min").value),
+        long:  Number(document.getElementById("long-min").value)
+    };
+
+    if (Object.values(values).some(
+        value => !Number.isInteger(value) || value < 1 ) ||
+        values.focus > 180 || values.short > 60 || values.long > 60
+    ) {
+        alert("Enter whole minutes within the allowed ranges.");
+        return;
+    }
+
+    stopTimer();
+    Object.assign(durations, values);
+    remaining = durations[mode] * 60;
+    total = remaining;
+    render();
+    alert("Timer durations saved.");
+})
+
+render();
