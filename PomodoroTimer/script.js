@@ -18,25 +18,25 @@ let endTime = null;
 let interval = null;
 let completed = 0;
 
-const timeE1 = document.getElementById("time");
-const statusE1 = document.getElementById("status");
-const startBtn = document.getElementById("start")
+const timeEl = document.getElementById("time");
+const statusEl = document.getElementById("status");
+const startBtn = document.getElementById("start");
 const ring = document.getElementById("ring");
 
 function render() {
     const mins = Math.floor(remaining / 60);
     const secs = remaining % 60;
 
-    timeE1.textContent = String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+    timeEl.textContent = String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
 
     ring.style.setProperty(
         "--progress",
         ((total > 0)? remaining / total * 100 : 100) + "%"
     );
 
-    startBtn.textContent = running? "Pause" : remaining === total? ((mode === focus)? "Start focus" : "Start break") : "Resume";
+    startBtn.textContent = running? "Pause" : remaining === total? ((mode === "focus")? "Start focus" : "Start break") : "Resume";
 
-    statusE1.textContent = running? (mode === "focus"? "Stay in the zone" : "Take a breath") : remaining === total? 
+    statusEl.textContent = running? (mode === "focus"? "Stay in the zone" : "Take a breath") : remaining === total? 
         "Ready to begin" : "Timer paused";
         
     document.getElementById("current-mode").textContent = names[mode];
@@ -47,7 +47,7 @@ function render() {
         button.classList.toggle("active", button.dataset.mode === mode);
     });
 
-    document.title = timeE1.textContent + ". " + names[mode];
+    document.title = timeEl.textContent + ". " + names[mode];
 }
 
 function stopTimer() {
@@ -57,7 +57,7 @@ function stopTimer() {
     endTime = null;
 }
 
-function selectMode() {
+function selectMode(newMode) {
     stopTimer();
     mode = newMode;
     remaining = durations[mode] * 60;
@@ -66,7 +66,7 @@ function selectMode() {
 }
 
 function tick() {
-    remaining = Math.max(0, Math.ceil(endTime - Math.now() / 1000));
+    remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
 
     if (remaining <= 0) {
         stopTimer();
@@ -79,7 +79,7 @@ function tick() {
             selectMode("focus")
         }
 
-        statusE1.textContent = "Session complete";
+        statusEl.textContent = "Session complete";
         render();
 
         if ("vibrate" in navigator) {
@@ -130,7 +130,7 @@ document.querySelectorAll(".mode").forEach(button => {
     })
 })
 
-document.getElementById("save").addEventListerner("click", () => {
+document.getElementById("save").addEventListener("click", () => {
     const values = {
         focus: Number(document.getElementById("focus-min").value),
         short: Number(document.getElementById("short-min").value),
