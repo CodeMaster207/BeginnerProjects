@@ -4,10 +4,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Transaction
 from forms import RegisterForm, LoginForm, TransactionForm
 import datetime
+import os
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'change-this-in-production'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tracker.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'tracker.db').replace('\\', '/')
 
 db.init_app(app)
 
